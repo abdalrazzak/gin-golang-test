@@ -1,0 +1,26 @@
+#!/bin/bash
+
+find . -name *.orig -exec rm {} \;
+find . -name *_BACKUP_* -exec rm {} \;
+find . -name *_BASE_* -exec rm {} \;
+find . -name *_LOCAL_* -exec rm {} \;
+find . -name *_REMOTE_* -exec rm {} \;
+
+
+clear
+a=`git status | head -n 1`
+arr=( $a )
+branch_name=${arr[2]}
+last_commit_name=`git --no-pager log --oneline  | head -n 1 | cut -d " " -f2-`
+
+if [[ "$branch_name" != "master" ]]
+then 
+	echo "Not allowed!"
+	exit
+fi
+
+
+
+echo "==================== JOB STARTED =============================="
+	git add . && git commit -m "$1" && git push origin $branch_name
+echo "==================== JOB FINISHED ============================="
