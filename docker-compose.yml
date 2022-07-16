@@ -30,22 +30,7 @@ services:
       - database_mysql:/var/lib/mysql
     networks:
       - fullstack
-  
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_container
-    depends_on:
-      - fullstack-mysql
-    environment:
-      - PMA_HOST=127.0.0.1 # Note the "mysql". Must be the name of the what you used as the mysql service.
-      - PMA_USER=${DB_USER}
-      - PMA_PORT=${DB_PORT}
-      - PMA_PASSWORD=${DB_PASSWORD}
-    ports:
-      - 9090:80
-    restart: always
-    networks:
-      - fullstack
+   
 
 
 volumes:
