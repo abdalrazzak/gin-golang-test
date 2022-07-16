@@ -10,7 +10,7 @@ import (
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver 
 
-	"github.com/victorsteven/fullstack/api/models"
+	"github.com/abdalrazzak/gin-golang-test/api/models"
 )
 
 type Server struct {

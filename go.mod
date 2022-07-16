@@ -1,14 +1,21 @@
 module github.com/abdalrazzak/gin-golang-test
 
+go 1.12
+
 require (
-	github.com/gin-contrib/sse v0.0.0-20190125020943-a7658810eb74 // indirect
-	github.com/gin-gonic/gin v1.3.0 // indirect
-	github.com/golang/protobuf v1.2.0 // indirect
-	github.com/jinzhu/gorm v1.9.2 // indirect
-	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
-	github.com/mattn/go-isatty v0.0.4 // indirect
-	github.com/mattn/go-sqlite3 v1.10.0 // indirect
-	github.com/ugorji/go/codec v0.0.0-20190204201341-e444a5086c43 // indirect
-	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
+	github.com/DATA-DOG/go-sqlmock v1.3.3
+	github.com/badoux/checkmail v0.0.0-20181210160741-9661bd69e9ad
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/fatih/structs v1.1.0
+	github.com/go-sql-driver/mysql v1.4.1
+	github.com/go-test/deep v1.0.2
+	github.com/gorilla/handlers v1.4.2
+	github.com/gorilla/mux v1.6.2
+	github.com/jinzhu/gorm v1.9.10
+	github.com/joho/godotenv v1.3.0
+	github.com/kr/pretty v0.1.0 // indirect
+	github.com/satori/go.uuid v1.2.0
+	github.com/stretchr/testify v1.2.2
+	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+	gopkg.in/go-playground/assert.v1 v1.2.1
 )
