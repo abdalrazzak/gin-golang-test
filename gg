@@ -22,5 +22,5 @@ fi
 
 
 echo "==================== JOB STARTED =============================="
-	git add . && git commit -m "$1" && git push origin $branch_name
+	git add . && git commit -m "$1" && git push main $branch_name
 echo "==================== JOB FINISHED ============================="
