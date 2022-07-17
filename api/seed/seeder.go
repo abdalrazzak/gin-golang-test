@@ -8,13 +8,11 @@ import (
 )
 
 var users = []models.User{
-	models.User{
-		Age: 	  30,
+	models.User{ 
 		Email:    "abboudbath4@gmail.com",
 		Password: "password",
 	},
-	models.User{
-		Age: 	   30,
+	models.User{ 
 		Email:    "test43@gmail.com",
 		Password: "password",
 	},

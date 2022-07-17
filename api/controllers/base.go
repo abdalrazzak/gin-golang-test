@@ -23,8 +23,8 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 	var err error
 
 	if Dbdriver == "mysql" {
-		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
-		server.DB, err = gorm.Open(Dbdriver, DBURL)
+		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DbUser, DbPassword, DbHost, DbPort, DbName)
+		server.DB, err = gorm.Open(Dbdriver, DBURL) 
 		if err != nil {
 			fmt.Printf("Cannot connect to %s database", Dbdriver)
 			log.Fatal("This is the error:", err)
@@ -32,6 +32,7 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 			fmt.Printf("We are connected to the %s database", Dbdriver)
 		}
 	} 
+	
 
 	server.DB.Debug().AutoMigrate(&models.User{}) //database migration
 
@@ -41,6 +42,6 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 }
 
 func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
+	fmt.Println("Listening to port 8081")
 	log.Fatal(http.ListenAndServe(addr, server.Router))
 }
