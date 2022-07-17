@@ -24,44 +24,39 @@ func TestCreateUser(t *testing.T) {
 	samples := []struct {
 		inputJSON    string
 		statusCode   int
-		nickname     string
+		Age     	 int
 		email        string
 		errorMessage string
 	}{
 		{
-			inputJSON:    `{"nickname":"Pet", "email": "pet@gmail.com", "password": "password"}`,
+			inputJSON:    `{"age":22, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   201,
-			nickname:     "Pet",
-			email:        "pet@gmail.com",
+			age:    	  22,
+			email:        "abboudbath4@gmail.com",
 			errorMessage: "",
 		},
 		{
-			inputJSON:    `{"nickname":"Frank", "email": "pet@gmail.com", "password": "password"}`,
+			inputJSON:    `{"age":23, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   500,
 			errorMessage: "Email Already Taken",
 		},
 		{
-			inputJSON:    `{"nickname":"Pet", "email": "grand@gmail.com", "password": "password"}`,
+			inputJSON:    `{"age":17, "email": "lolo@gmail.com", "password": "password"}`,
 			statusCode:   500,
-			errorMessage: "Nickname Already Taken",
+			errorMessage: "age must be more than 18",
 		},
 		{
-			inputJSON:    `{"nickname":"Kan", "email": "kangmail.com", "password": "password"}`,
+			inputJSON:    `{"age":44, "email": "abboudbath4.gmail.com", "password": "password"}`,
 			statusCode:   422,
 			errorMessage: "Invalid Email",
 		},
 		{
-			inputJSON:    `{"nickname": "", "email": "kan@gmail.com", "password": "password"}`,
-			statusCode:   422,
-			errorMessage: "Required Nickname",
-		},
-		{
-			inputJSON:    `{"nickname": "Kan", "email": "", "password": "password"}`,
+			inputJSON:    `{"age": 32, "email": "", "password": "password"}`,
 			statusCode:   422,
 			errorMessage: "Required Email",
 		},
 		{
-			inputJSON:    `{"nickname": "Kan", "email": "kan@gmail.com", "password": ""}`,
+			inputJSON:    `{"age": 42, "email": "abboudbath4@gmail.com, "password": ""}`,
 			statusCode:   422,
 			errorMessage: "Required Password",
 		},
@@ -84,7 +79,7 @@ func TestCreateUser(t *testing.T) {
 		}
 		assert.Equal(t, rr.Code, v.statusCode)
 		if v.statusCode == 201 {
-			assert.Equal(t, responseMap["nickname"], v.nickname)
+			assert.Equal(t, responseMap["age"], v.age)
 			assert.Equal(t, responseMap["email"], v.email)
 		}
 		if v.statusCode == 422 || v.statusCode == 500 && v.errorMessage != "" {
@@ -133,14 +128,14 @@ func TestGetUserByID(t *testing.T) {
 	userSample := []struct {
 		id           string
 		statusCode   int
-		nickname     string
+		age          int
 		email        string
 		errorMessage string
 	}{
 		{
 			id:         strconv.Itoa(int(user.ID)),
 			statusCode: 200,
-			nickname:   user.Nickname,
+			age:   		user.Age,
 			email:      user.Email,
 		},
 		{
@@ -168,7 +163,7 @@ func TestGetUserByID(t *testing.T) {
 		assert.Equal(t, rr.Code, v.statusCode)
 
 		if v.statusCode == 200 {
-			assert.Equal(t, user.Nickname, responseMap["nickname"])
+			assert.Equal(t, user.age, responseMap["age"])
 			assert.Equal(t, user.Email, responseMap["email"])
 		}
 	}
@@ -207,7 +202,7 @@ func TestUpdateUser(t *testing.T) {
 		id             string
 		updateJSON     string
 		statusCode     int
-		updateNickname string
+		updateAge      int
 		updateEmail    string
 		tokenGiven     string
 		errorMessage   string
@@ -215,17 +210,17 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// Convert int32 to int first before converting to string
 			id:             strconv.Itoa(int(AuthID)),
-			updateJSON:     `{"nickname":"Grand", "email": "grand@gmail.com", "password": "password"}`,
+			updateJSON:     `{"age":22, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:     200,
-			updateNickname: "Grand",
-			updateEmail:    "grand@gmail.com",
+			updateAge: 		22,
+			updateEmail:    "abboudbath4@gmail.com",
 			tokenGiven:     tokenString,
 			errorMessage:   "",
 		},
 		{
 			// When password field is empty
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Woman", "email": "woman@gmail.com", "password": ""}`,
+			updateJSON:   `{"age":32, "email": "abboudbath4@gmail.com", "password": ""}`,
 			statusCode:   422,
 			tokenGiven:   tokenString,
 			errorMessage: "Required Password",
@@ -233,7 +228,7 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// When no token was passed
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Man", "email": "man@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age":42, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   401,
 			tokenGiven:   "",
 			errorMessage: "Unauthorized",
@@ -241,7 +236,7 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// When incorrect token was passed
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Woman", "email": "woman@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age":33, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   401,
 			tokenGiven:   "This is incorrect token",
 			errorMessage: "Unauthorized",
@@ -249,7 +244,7 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// Remember "kenny@gmail.com" belongs to user 2
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Frank", "email": "kenny@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age":21, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   500,
 			tokenGiven:   tokenString,
 			errorMessage: "Email Already Taken",
@@ -257,28 +252,28 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// Remember "Kenny Morris" belongs to user 2
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Kenny Morris", "email": "grand@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age":17, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   500,
 			tokenGiven:   tokenString,
-			errorMessage: "Nickname Already Taken",
+			errorMessage: "Age must be more than 18",
 		},
 		{
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname":"Kan", "email": "kangmail.com", "password": "password"}`,
+			updateJSON:   `{"age":22, "email": "abboudbath4.gmail.com", "password": "password"}`,
 			statusCode:   422,
 			tokenGiven:   tokenString,
 			errorMessage: "Invalid Email",
 		},
 		{
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname": "", "email": "kan@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age": "", "email": "abboudbath4@gmail.com", "password": "password"}`,
 			statusCode:   422,
 			tokenGiven:   tokenString,
-			errorMessage: "Required Nickname",
+			errorMessage: "Required Age",
 		},
 		{
 			id:           strconv.Itoa(int(AuthID)),
-			updateJSON:   `{"nickname": "Kan", "email": "", "password": "password"}`,
+			updateJSON:   `{"age": 34, "email": "", "password": "password"}`,
 			statusCode:   422,
 			tokenGiven:   tokenString,
 			errorMessage: "Required Email",
@@ -291,7 +286,7 @@ func TestUpdateUser(t *testing.T) {
 		{
 			// When user 2 is using user 1 token
 			id:           strconv.Itoa(int(2)),
-			updateJSON:   `{"nickname": "Mike", "email": "mike@gmail.com", "password": "password"}`,
+			updateJSON:   `{"age": 44, "email": "abboudbath4@gmail.com", "password": "password"}`,
 			tokenGiven:   tokenString,
 			statusCode:   401,
 			errorMessage: "Unauthorized",
@@ -320,7 +315,7 @@ func TestUpdateUser(t *testing.T) {
 		}
 		assert.Equal(t, rr.Code, v.statusCode)
 		if v.statusCode == 200 {
-			assert.Equal(t, responseMap["nickname"], v.updateNickname)
+			assert.Equal(t, responseMap["age"], v.updateAge)
 			assert.Equal(t, responseMap["email"], v.updateEmail)
 		}
 		if v.statusCode == 401 || v.statusCode == 422 || v.statusCode == 500 && v.errorMessage != "" {
