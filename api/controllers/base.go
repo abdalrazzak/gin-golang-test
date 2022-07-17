@@ -32,6 +32,8 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 			fmt.Printf("We are connected to the %s database", Dbdriver)
 		}
 	} 
+
+	// here you can switch to another database 
 	
 
 	server.DB.Debug().AutoMigrate(&models.User{}) //database migration
