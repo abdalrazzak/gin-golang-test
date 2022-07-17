@@ -18,7 +18,7 @@ func (s *Server) initializeRoutes() {
 	s.Router.HandleFunc("/users/{id}", middlewares.SetMiddlewareAuthentication(s.DeleteUser)).Methods("DELETE")
 
 	//Files routes
-	s.Router.HandleFunc("/files", middlewares.SetMiddlewareJSON(s.CreateFile)).Methods("POST")
-	s.Router.HandleFunc("/files", middlewares.SetMiddlewareJSON(s.GetFiles)).Methods("GET")  
+	s.Router.HandleFunc("/files", middlewares.SetMiddlewareAuthentication(s.CreateFile)).Methods("POST")
+	s.Router.HandleFunc("/files", middlewares.SetMiddlewareAuthentication(s.GetFiles)).Methods("GET")  
 	s.Router.HandleFunc("/files/{id}", middlewares.SetMiddlewareAuthentication(s.DeleteFile)).Methods("DELETE")
 }
