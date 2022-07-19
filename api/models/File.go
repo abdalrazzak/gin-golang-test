@@ -21,8 +21,7 @@ func (f *File) Prepare() {
 	f.ID = 0 
 	f.Content = html.EscapeString(strings.TrimSpace(f.Content))
 	f.Author = User{}
-	f.CreatedAt = time.Now()
-	f.UpdatedAt = time.Now()
+	f.CreatedAt = time.Now() 
 }
 
 func (f *File) Validate() error {

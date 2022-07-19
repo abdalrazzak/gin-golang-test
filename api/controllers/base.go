@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"context"
 
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
