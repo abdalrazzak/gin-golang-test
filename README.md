@@ -1,7 +1,8 @@
 building docker images by following command
 
 ```
-sudo run.sh
+sudo docker-compose up --build
+sudo docker-compose up -d
 ```
 
 ##API Endpoint 
@@ -172,5 +173,5 @@ header
 For Running Tests
 
 ```
-sudo run-test.sh
+sudo docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
 ```

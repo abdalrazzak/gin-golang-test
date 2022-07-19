@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"context"
 
 	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
-
+	"github.com/jinzhu/gorm" 
 	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver  
 	"github.com/abdalrazzak/gin-golang-test/api/models"
 )
