@@ -8,8 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 
-	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver 
-
+	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver  
 	"github.com/abdalrazzak/gin-golang-test/api/models"
 )
 
@@ -32,7 +31,7 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 			fmt.Printf("We are connected to the %s database", Dbdriver)
 		}
 	} 
-
+  
 	// here you can switch to another database 
 	
 

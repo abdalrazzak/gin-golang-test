@@ -11,6 +11,7 @@ services:
     depends_on:
       # - fullstack-postgres          # Uncomment this when using postgres.
       - fullstack-mysql           # Uncomment this when using mysql.
+      # - mongo
     networks:
       - fullstack
 
@@ -30,7 +31,7 @@ services:
         - database_mysql:/var/lib/mysql
       networks:
         - fullstack
-
+ 
         
 
 volumes:
