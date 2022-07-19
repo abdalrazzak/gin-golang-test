@@ -11,7 +11,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/abdalrazzak/gin-golang-test/api/auth"
 	"github.com/abdalrazzak/gin-golang-test/api/models"
-	"github.com/abdalrazzak/gin-golang-testapi/responses"
+	"github.com/abdalrazzak/gin-golang-test/api/responses"
 	"github.com/abdalrazzak/gin-golang-test/api/utils/formaterror"
 )
 
