@@ -1,8 +1,7 @@
 building docker images by following command
 
 ```
-sudo docker-compose up --build
-sudo docker-compose up -d
+sudo docker-compose up --build 
 ```
 
 ##API Endpoint 
