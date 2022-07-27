@@ -45,4 +45,3 @@ volumes:
 networks:
   fullstack:
     driver: bridge
-

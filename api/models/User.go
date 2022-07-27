@@ -17,8 +17,7 @@ type User struct {
 	Age  	  uint      `gorm:"null" json:"age"`
 	Email     string    `gorm:"size:100;not null;unique" json:"email"`
 	Password  string    `gorm:"size:100;not null;" json:"password"`
-	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
-	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
+	CreatedAt time.Time `gorm:"default:TIMESTAMP" json:"created_at"` 
 }
 
 func Hash(password string) ([]byte, error) {
@@ -42,8 +41,7 @@ func (u *User) Prepare() {
 	u.ID = 0
 	u.Age = 0
 	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
-	u.CreatedAt = time.Now()
-	u.UpdatedAt = time.Now()
+	u.CreatedAt = time.Now() 
 }
 
 func (u *User) Validate(action string) error {

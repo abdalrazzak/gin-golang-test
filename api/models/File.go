@@ -14,7 +14,7 @@ type File struct {
 	Author    User      `json:"author"`
 	Content   string    `gorm:"size:255;not null;" json:"content"`
 	AuthorID  uint32    `gorm:"not null" json:"author_id"`
-	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
+	CreatedAt time.Time `gorm:"default:TIMESTAMP" json:"created_at"`
 }
 
 func (f *File) Prepare() {

@@ -24,15 +24,13 @@ func TestCreateUser(t *testing.T) {
 	samples := []struct {
 		inputJSON    string
 		statusCode   int
-		Age     	 int
+		age     	 int
 		email        string
 		errorMessage string
 	}{
 		{
 			inputJSON:    `{"age":22, "email": "abboudbath4@gmail.com", "password": "password"}`,
-			statusCode:   201,
-			age:    	  22,
-			email:        "abboudbath4@gmail.com",
+			statusCode:   201, 
 			errorMessage: "",
 		},
 		{
@@ -134,8 +132,7 @@ func TestGetUserByID(t *testing.T) {
 	}{
 		{
 			id:         strconv.Itoa(int(user.ID)),
-			statusCode: 200,
-			age:   		user.Age,
+			statusCode: 200, 
 			email:      user.Email,
 		},
 		{
@@ -163,7 +160,7 @@ func TestGetUserByID(t *testing.T) {
 		assert.Equal(t, rr.Code, v.statusCode)
 
 		if v.statusCode == 200 {
-			assert.Equal(t, user.age, responseMap["age"])
+			assert.Equal(t, user.Age, responseMap["age"])
 			assert.Equal(t, user.Email, responseMap["email"])
 		}
 	}

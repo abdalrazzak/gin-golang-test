@@ -14,17 +14,17 @@ import (
 )
 
 func TestSignIn(t *testing.T) {
-
+	
 	err := refreshUserTable()
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	
 	user, err := seedOneUser()
 	if err != nil {
 		fmt.Printf("This is the error %v\n", err)
 	}
-
+	
 	samples := []struct {
 		email        string
 		password     string
